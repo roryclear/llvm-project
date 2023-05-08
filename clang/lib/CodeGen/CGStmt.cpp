@@ -1124,6 +1124,9 @@ void CodeGenFunction::EmitForStmt(const ForStmt &S,
   if (S.getInc()) {
     EmitBlock(Continue.getBlock());
     EmitStmt(S.getInc());
+    EmitStmt(S.getInc());
+    EmitStmt(S.getInc());
+    EmitStmt(S.getInc());
   }
 
   BreakContinueStack.pop_back();
