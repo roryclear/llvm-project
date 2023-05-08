@@ -1026,7 +1026,7 @@ void CodeGenFunction::EmitDoStmt(const DoStmt &S,
 }
 
 void CodeGenFunction::EmitForStmt(const ForStmt &S,
-                                  ArrayRef<const Attr *> ForAttrs) {
+                                  ArrayRef<const Attr *> ForAttrs, bool isRorStatement) {
   JumpDest LoopExit = getJumpDestInCurrentScope("for.end");
 
   LexicalScope ForScope(*this, S.getSourceRange());
@@ -1124,9 +1124,11 @@ void CodeGenFunction::EmitForStmt(const ForStmt &S,
   if (S.getInc()) {
     EmitBlock(Continue.getBlock());
     EmitStmt(S.getInc());
-    EmitStmt(S.getInc());
-    EmitStmt(S.getInc());
-    EmitStmt(S.getInc());
+    if(isRorStatement) {
+      EmitStmt(S.getInc());
+      EmitStmt(S.getInc());
+      EmitStmt(S.getInc());
+    }
   }
 
   BreakContinueStack.pop_back();
