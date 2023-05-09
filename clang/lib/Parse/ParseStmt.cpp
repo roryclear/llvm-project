@@ -306,8 +306,8 @@ Retry:
   case tok::kw_while:               // C99 6.8.5.1: while-statement
     return ParseWhileStatement(TrailingElseLoc);
   case tok::kw_do:                  // C99 6.8.5.2: do-statement
-    SemiError = "do/while";
     Res = ParseDoStatement();
+    SemiError = "do/while";
     break;
   case tok::kw_for:                 // C99 6.8.5.3: for-statement
     return ParseForStatement(TrailingElseLoc);

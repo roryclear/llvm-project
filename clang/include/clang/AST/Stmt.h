@@ -2644,7 +2644,6 @@ public:
   const Stmt *getInit() const { return SubExprs[INIT]; }
   const Expr *getCond() const { return reinterpret_cast<Expr*>(SubExprs[COND]);}
   const Expr *getInc()  const { return reinterpret_cast<Expr*>(SubExprs[INC]); }
-  void setIsRorStatement(bool isRS) { isRorStatement = isRS; } 
   bool getIsRorStatement() const { return isRorStatement; } 
   const Stmt *getBody() const { return SubExprs[BODY]; }
 
