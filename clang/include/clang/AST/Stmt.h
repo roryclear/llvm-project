@@ -2612,10 +2612,6 @@ public:
 
   Stmt *getInit() { return SubExprs[INIT]; }
 
-  void setIsRorStatement(bool isRS) { isRorStatement = isRS; } 
-
-  bool getIsRorStatement() { return isRorStatement; } 
-
   /// Retrieve the variable declared in this "for" statement, if any.
   ///
   /// In the following example, "y" is the condition variable.
@@ -2648,6 +2644,8 @@ public:
   const Stmt *getInit() const { return SubExprs[INIT]; }
   const Expr *getCond() const { return reinterpret_cast<Expr*>(SubExprs[COND]);}
   const Expr *getInc()  const { return reinterpret_cast<Expr*>(SubExprs[INC]); }
+  void setIsRorStatement(bool isRS) { isRorStatement = isRS; } 
+  bool getIsRorStatement() const { return isRorStatement; } 
   const Stmt *getBody() const { return SubExprs[BODY]; }
 
   void setInit(Stmt *S) { SubExprs[INIT] = S; }

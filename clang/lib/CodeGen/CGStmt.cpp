@@ -1124,7 +1124,7 @@ void CodeGenFunction::EmitForStmt(const ForStmt &S,
   if (S.getInc()) {
     EmitBlock(Continue.getBlock());
     EmitStmt(S.getInc());
-    if(isRorStatement) {
+    if(S.getIsRorStatement()) {
       EmitStmt(S.getInc());
       EmitStmt(S.getInc());
       EmitStmt(S.getInc());

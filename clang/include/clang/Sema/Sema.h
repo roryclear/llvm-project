@@ -5119,7 +5119,8 @@ public:
                           ConditionResult Second,
                           FullExprArg Third,
                           SourceLocation RParenLoc,
-                          Stmt *Body);
+                          Stmt *Body,
+                          bool isRorStatement = false);
   ExprResult CheckObjCForCollectionOperand(SourceLocation forLoc,
                                            Expr *collection);
   StmtResult ActOnObjCForCollectionStmt(SourceLocation ForColLoc,
