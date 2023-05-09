@@ -2600,16 +2600,21 @@ class ForStmt : public Stmt {
   enum { INIT, CONDVAR, COND, INC, BODY, END_EXPR };
   Stmt* SubExprs[END_EXPR]; // SubExprs[INIT] is an expression or declstmt.
   SourceLocation LParenLoc, RParenLoc;
+  bool isRorStatement = false;
 
 public:
   ForStmt(const ASTContext &C, Stmt *Init, Expr *Cond, VarDecl *condVar,
           Expr *Inc, Stmt *Body, SourceLocation FL, SourceLocation LP,
-          SourceLocation RP);
+          SourceLocation RP, bool isRS = false);
 
   /// Build an empty for statement.
   explicit ForStmt(EmptyShell Empty) : Stmt(ForStmtClass, Empty) {}
 
   Stmt *getInit() { return SubExprs[INIT]; }
+
+  void setIsRorStatement(bool isRS) { isRorStatement = isRS; } 
+
+  bool getIsRorStatement() { return isRorStatement; } 
 
   /// Retrieve the variable declared in this "for" statement, if any.
   ///

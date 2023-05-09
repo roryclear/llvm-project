@@ -1018,7 +1018,7 @@ IfStmt::getNondiscardedCase(const ASTContext &Ctx) const {
 
 ForStmt::ForStmt(const ASTContext &C, Stmt *Init, Expr *Cond, VarDecl *condVar,
                  Expr *Inc, Stmt *Body, SourceLocation FL, SourceLocation LP,
-                 SourceLocation RP)
+                 SourceLocation RP, bool isRS)
   : Stmt(ForStmtClass), LParenLoc(LP), RParenLoc(RP)
 {
   SubExprs[INIT] = Init;
@@ -1027,6 +1027,7 @@ ForStmt::ForStmt(const ASTContext &C, Stmt *Init, Expr *Cond, VarDecl *condVar,
   SubExprs[INC] = Inc;
   SubExprs[BODY] = Body;
   ForStmtBits.ForLoc = FL;
+  isRorStatement = isRS;
 }
 
 VarDecl *ForStmt::getConditionVariable() const {
